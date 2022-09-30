@@ -23,4 +23,3 @@ echo Installation complete.
 
 exit 0
 
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.15.1 TARGET_ARCH=x86_64 sh -
