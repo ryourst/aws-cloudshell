@@ -55,3 +55,28 @@ helm show values ingress-nginx/ingress-nginx >ingress-nginx.yaml
 # edit hostNetwork, HostPort, Daemonset
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace --values ingress-nginx.yaml
 ```
+#### Ingress Resource for ArgoCD
+Add `- --enable-ssl-passthrough` to ingress-nginx daemonset args
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  rules:
+  - host: server.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: https
+```
