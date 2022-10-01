@@ -19,7 +19,11 @@ eksctl create nodegroup --cluster dev-01 --node-type t3.medium --node-ami auto -
 istioctl install --set profile=demo
 kubectl label namespace default istio-injection=enabled
 ```
-
+Install sample app
+```
+kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/kubernetes-manifests.yaml
+kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/istio-manifests.yaml
+```
 ### Install ArgoCD
 ```
 kubectl create namespace argocd
@@ -80,3 +84,5 @@ spec:
             port:
               name: https
 ```
+kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/kubernetes-manifests.yaml
+kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/istio-manifests.yaml
