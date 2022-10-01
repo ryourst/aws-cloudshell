@@ -84,5 +84,3 @@ spec:
             port:
               name: https
 ```
-kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/kubernetes-manifests.yaml
-kubectl apply -f https://raw.githubusercontent.com/ryourst/microservices-demo/main/release/istio-manifests.yaml
