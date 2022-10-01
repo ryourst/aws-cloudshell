@@ -1,5 +1,5 @@
 # aws-cloudshell
-Install command-line utilities to build a test cluster
+Install command-line utilities to build a test cluster. Run `cat bootstrap.sh | sh -`
 
 ### Create an EKS cluster with AWS VPC CNI
 ```
