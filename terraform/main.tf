@@ -83,6 +83,12 @@ resource "aws_instance" "k8s_node" {
   root_block_device {
     volume_size = 20
   }
+  ebs_block_device {
+    device_name = "/dev/sdd"
+    volume_type = "gp2"
+    volume_size = 10
+    delete_on_termination = true
+  }
 
   tags = {
     name = "lab"
