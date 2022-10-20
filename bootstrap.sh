@@ -12,6 +12,7 @@ eksctl -h &> /dev/null || (echo "Downloading eksctl"; curl --silent --location "
 istioctl -h &> /dev/null || (echo "Downloading istioctl"; cd ~ && curl --silent -L https://istio.io/downloadIstio | ISTIO_VERSION=1.15.1 TARGET_ARCH=x86_64 sh - > /dev/null && mv "`echo ~`"/istio-?.*.*/bin/istioctl ~/.local/bin/istioctl )
 argocd -h &> /dev/null || (echo "Downloading argocd"; curl --silent -Lo "`echo ~`/.local/bin/argocd" https://github.com/argoproj/argo-cd/releases/download/v2.4.12/argocd-linux-amd64 )
 helm -h &> /dev/null || (echo "Downloading helm"; curl --silent --location "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz" | tar xz -C /tmp > /dev/null && mv /tmp/linux-amd64/helm ~/.local/bin/helm )
+terraform -h &> /dev/null || (echo "Downloading terraform"; curl --silent --location "https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip" | zcat > ~/.local/bin/terraform )
 chmod +x "`echo ~`/.local/bin/"*
 
 echo Verifying installation.
@@ -21,6 +22,7 @@ eksctl -h &> /dev/null || { echo "Error downloading eksctl. Please try again."; 
 istioctl -h &> /dev/null || { echo "Error downloading istioctl. Please try again."; rm -f "`echo ~`/.local/bin/istioctl"; exit 1; }
 argocd -h &> /dev/null || { echo "Error downloading argocd. Please try again."; rm -f "`echo ~`/.local/bin/argocd"; exit 1; }
 helm -h &> /dev/null || { echo "Error downloading helm. Please try again."; rm -f "`echo ~`/.local/bin/helm"; exit 1; }
+terraform -h &> /dev/null || { echo "Error downloading terraform. Please try again."; rm -f "`echo ~`/.local/bin/terraform"; exit 1; }
 echo Installation complete.
 
 exit 0
