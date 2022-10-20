@@ -46,3 +46,31 @@ resource "aws_route_table_association" "lab_rta" {
   subnet_id      = aws_subnet.lab_net.id
   route_table_id = aws_route_table.lab_rt.id
 }
+
+
+resource "aws_security_group" "lab_sg" {
+  name        = "lab_sg"
+  description = "lab security group"
+  vpc_id      = aws_vpc.lab_vpc.id
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_key_pair" "lab_key" {
+  key_name   = "id_rsa"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
+
+
