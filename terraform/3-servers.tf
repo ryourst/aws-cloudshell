@@ -1,3 +1,7 @@
+resource "aws_key_pair" "lab_key" {
+  key_name   = "id_rsa"
+  public_key = file("~/.ssh/id_rsa.pub")
+}
 
 resource "aws_instance" "k8s-master" {
   instance_type          = "t3.medium"
