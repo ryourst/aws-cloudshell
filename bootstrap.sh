@@ -1,7 +1,8 @@
-#! /bin/sh
+#!/bin/bash
 
 [[ "${AWS_EXECUTION_ENV}" != "CloudShell" ]] && { echo "Please use AWS CloudShell."; exit 1; }
 
+[[ ! -d "`echo ~`/.kube" ]] && mkdir -p "`echo ~`/.kube"
 [[ ! -d "`echo ~`/.local/bin" ]] && mkdir -p "`echo ~`/.local/bin"
 [[ ! -f "`echo ~`/.ssh/id_rsa" ]] && (echo "Generating new ssh-keypair." && ssh-keygen -b 2048 -t rsa -f "`echo ~`/.ssh/id_rsa" -q -N "")
 
@@ -13,6 +14,7 @@ istioctl -h &> /dev/null || (echo "Downloading istioctl"; cd ~ && curl --silent 
 argocd -h &> /dev/null || (echo "Downloading argocd"; curl --silent -Lo "`echo ~`/.local/bin/argocd" https://github.com/argoproj/argo-cd/releases/download/v2.4.12/argocd-linux-amd64 )
 helm -h &> /dev/null || (echo "Downloading helm"; curl --silent --location "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz" | tar xz -C /tmp > /dev/null && mv /tmp/linux-amd64/helm ~/.local/bin/helm )
 terraform -h &> /dev/null || (echo "Downloading terraform"; curl --silent --location "https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip" | zcat > ~/.local/bin/terraform )
+cilium -h &> /dev/null || (echo "Downloading cilium"; curl --silent --location "https://github.com/cilium/cilium-cli/releases/download/v0.12.4/cilium-linux-amd64.tar.gz" | tar xz -C ~/.local/bin/)
 chmod +x "`echo ~`/.local/bin/"*
 
 echo Verifying installation.
@@ -23,6 +25,7 @@ istioctl -h &> /dev/null || { echo "Error downloading istioctl. Please try again
 argocd -h &> /dev/null || { echo "Error downloading argocd. Please try again."; rm -f "`echo ~`/.local/bin/argocd"; exit 1; }
 helm -h &> /dev/null || { echo "Error downloading helm. Please try again."; rm -f "`echo ~`/.local/bin/helm"; exit 1; }
 terraform -h &> /dev/null || { echo "Error downloading terraform. Please try again."; rm -f "`echo ~`/.local/bin/terraform"; exit 1; }
+cilium -h &> /dev/null || { echo "Error downloading cilium. Please try again."; rm -f "`echo ~`/.local/bin/cilium"; exit 1; }
 echo Installation complete.
 
 exit 0
