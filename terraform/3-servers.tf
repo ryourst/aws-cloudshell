@@ -5,7 +5,7 @@ resource "aws_key_pair" "lab_key" {
 
 resource "aws_instance" "control" {
   instance_type          = "t2.small"
-  ami                    = data.aws_ami.ubuntu_node.id
+  ami                    = data.aws_ami.debian_node.id
   key_name               = aws_key_pair.lab_key.id
   vpc_security_group_ids = [aws_security_group.lab_sg.id]
   subnet_id              = aws_subnet.lab_net.id
@@ -21,7 +21,7 @@ resource "aws_instance" "control" {
 
 resource "aws_instance" "k8s-master" {
   instance_type          = "t3.medium"
-  ami                    = data.aws_ami.ubuntu_node.id
+  ami                    = data.aws_ami.debian_node.id
   key_name               = aws_key_pair.lab_key.id
   vpc_security_group_ids = [aws_security_group.lab_sg.id]
   subnet_id              = aws_subnet.lab_net.id
@@ -37,7 +37,7 @@ resource "aws_instance" "k8s-master" {
 
 resource "aws_instance" "k8s-worker1" {
   instance_type          = "t3.medium"
-  ami                    = data.aws_ami.ubuntu_node.id
+  ami                    = data.aws_ami.debian_node.id
   key_name               = aws_key_pair.lab_key.id
   vpc_security_group_ids = [aws_security_group.lab_sg.id]
   subnet_id              = aws_subnet.lab_net.id
@@ -60,7 +60,7 @@ resource "aws_instance" "k8s-worker1" {
 
 resource "aws_instance" "k8s-worker2" {
   instance_type          = "t3.medium"
-  ami                    = data.aws_ami.ubuntu_node.id
+  ami                    = data.aws_ami.debian_node.id
   key_name               = aws_key_pair.lab_key.id
   vpc_security_group_ids = [aws_security_group.lab_sg.id]
   subnet_id              = aws_subnet.lab_net.id
@@ -81,7 +81,7 @@ resource "aws_instance" "k8s-worker2" {
 }
 resource "aws_instance" "k8s-worker3" {
   instance_type          = "t3.medium"
-  ami                    = data.aws_ami.ubuntu_node.id
+  ami                    = data.aws_ami.debian_node.id
   key_name               = aws_key_pair.lab_key.id
   vpc_security_group_ids = [aws_security_group.lab_sg.id]
   subnet_id              = aws_subnet.lab_net.id
