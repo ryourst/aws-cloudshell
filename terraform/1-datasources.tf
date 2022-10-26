@@ -8,12 +8,22 @@ data "aws_ami" "ubuntu_node" {
   }
 }
 
-data "aws_ami" "debian_node" {
+data "aws_ami" "debian11_node" {
   most_recent = true
   owners      = ["136693071363"]
 
   filter {
     name   = "name"
     values = ["debian-11-amd64-20220503-998"]
+  }
+}
+
+data "aws_ami" "debian10_node" {
+  most_recent = true
+  owners      = ["136693071363"]
+
+  filter {
+    name   = "name"
+    values = ["debian-10-amd64-20220911-1135"]
   }
 }
