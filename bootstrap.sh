@@ -11,7 +11,7 @@ echo Downloading lab assets.
 kubectl -h &> /dev/null || (echo "Downloading kubectl"; curl -Lo "`echo ~`/.local/bin/kubectl" https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl )
 eksctl -h &> /dev/null || (echo "Downloading eksctl"; curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp > /dev/null && mv /tmp/eksctl ~/.local/bin/eksctl )
 istioctl -h &> /dev/null || (echo "Downloading istioctl"; cd ~ && curl --silent -L https://istio.io/downloadIstio | ISTIO_VERSION=1.15.1 TARGET_ARCH=x86_64 sh - > /dev/null && mv "`echo ~`"/istio-?.*.*/bin/istioctl ~/.local/bin/istioctl )
-argocd -h &> /dev/null || (echo "Downloading argocd"; curl --silent -Lo "`echo ~`/.local/bin/argocd" https://github.com/argoproj/argo-cd/releases/download/v2.4.12/argocd-linux-amd64 )
+argocd -h &> /dev/null || (echo "Downloading argocd"; curl --silent -Lo "`echo ~`/.local/bin/argocd" https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 )
 helm -h &> /dev/null || (echo "Downloading helm"; curl --silent --location "https://get.helm.sh/helm-v3.10.0-linux-amd64.tar.gz" | tar xz -C /tmp > /dev/null && mv /tmp/linux-amd64/helm ~/.local/bin/helm )
 terraform -h &> /dev/null || (echo "Downloading terraform"; curl --silent --location "https://releases.hashicorp.com/terraform/1.3.3/terraform_1.3.3_linux_amd64.zip" | zcat > ~/.local/bin/terraform )
 cilium -h &> /dev/null || (echo "Downloading cilium"; curl --silent --location "https://github.com/cilium/cilium-cli/releases/download/v0.12.4/cilium-linux-amd64.tar.gz" | tar xz -C ~/.local/bin/)
