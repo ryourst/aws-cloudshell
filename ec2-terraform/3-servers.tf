@@ -37,7 +37,6 @@ resource "aws_instance" "k8s-master" {
 
 resource "aws_instance" "k8s-worker" {
   count                  = 3
-  name                   = "k8s-worker${count.index + 1}"
   instance_type          = "t3.medium"
   ami                    = data.aws_ami.debian11_node.id
   key_name               = aws_key_pair.lab_key.id
@@ -55,7 +54,7 @@ resource "aws_instance" "k8s-worker" {
   }
 
   tags = {
-    name = "lab"
+    Name = "k8s-worker${count.index + 1}"
   }
 }
 
