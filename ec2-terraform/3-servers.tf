@@ -15,7 +15,7 @@ resource "aws_instance" "control" {
   }
 
   tags = {
-    name = "lab"
+    Name = "control"
   }
 }
 
@@ -31,7 +31,7 @@ resource "aws_instance" "k8s-master" {
   }
 
   tags = {
-    name = "lab"
+    Name = "k8s-master"
   }
 }
 
