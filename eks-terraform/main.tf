@@ -32,14 +32,13 @@ module "eks_blueprints" {
   # EKS CONTROL PLANE VARIABLES
   cluster_version = local.cluster_version
 
-  # List of Additional roles admin in the cluster
-  # Comment this section if you ARE NOTE at an AWS Event, as the TeamRole won't exist on your site, or replace with any valid role you want
-
-  # EKS MANAGED NODE GROUPS
   managed_node_groups = {
     mg_5 = {
-      node_group_name = local.node_group_name
-      instance_types  = ["t3.medium"]
+      node_group_name = "managed-ondemand"
+      instance_types  = ["t3.small"]
+      min_size        = 3
+      max_size        = 3
+      desired_size    = 3
       subnet_ids      = module.vpc.private_subnets
     }
   }
@@ -117,7 +116,7 @@ module "kubernetes_addons" {
 
   enable_aws_load_balancer_controller  = true
   enable_karpenter                     = false
-  enable_amazon_eks_aws_ebs_csi_driver = true
+  enable_amazon_eks_aws_ebs_csi_driver = false
   enable_aws_for_fluentbit             = true
   enable_metrics_server                = true
 
